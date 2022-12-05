@@ -1,24 +1,27 @@
-import logo from './logo.svg';
+import { createBrowserHistory } from '@remix-run/router';
+import { Route, Routes, BrowserRouter as Router } from 'react-router-dom';
 import './App.css';
+import CONSTANTS from "./common/constants.json"
+import AuthPage from "./pages/AuthPage"
+import Dashboard from './pages/Dashboard';
+import Login from './pages/Login';
+import PrivateRoute from './component/PrivateRoute';
+import Page404 from './error-component/Page404';
 
 function App() {
+  const history = createBrowserHistory()
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Router history={history}>
+        <Routes>
+            <Route exact path={CONSTANTS.ROUTES.DASHBOARD} element={<PrivateRoute />}>
+              <Route exact path={CONSTANTS.ROUTES.DASHBOARD} element={<Dashboard />} />
+            </Route>
+            <Route exact path={CONSTANTS.ROUTES.LOGIN} element={<Login />} />
+            <Route path="*" element={<Page404 />} />
+        </Routes>
+      </Router>
+    </>
   );
 }
 
