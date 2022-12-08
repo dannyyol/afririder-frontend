@@ -2,7 +2,6 @@ import { createBrowserHistory } from '@remix-run/router';
 import { Route, Routes, BrowserRouter as Router } from 'react-router-dom';
 import './App.css';
 import CONSTANTS from "./common/constants.json"
-import AuthPage from "./pages/AuthPage"
 import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
 import PrivateRoute from './component/PrivateRoute';
